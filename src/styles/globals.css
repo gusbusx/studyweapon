@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #ffffff;
+  color: #1d1d1f;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Dark mode */
+.dark body, body.dark {
+  background-color: #000000;
+  color: #f5f5f7;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #000000;
+  color: #f5f5f7;
+}
+
+::selection { background: rgba(0,122,255,0.15); }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f5f5f7; }
+::-webkit-scrollbar-thumb { background: #d2d2d7; border-radius: 3px; }
+
+html.dark ::-webkit-scrollbar-track { background: #1c1c1e; }
+html.dark ::-webkit-scrollbar-thumb { background: #3a3a3c; }
+
+*:focus-visible {
+  outline: 2px solid rgba(0,122,255,0.5);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .apple-card {
+    @apply bg-white rounded-3xl border border-black/[0.06] shadow-sm
+           transition-all duration-300 hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  html.dark .apple-card {
+    @apply bg-[#1c1c1e] border-white/[0.08];
+  }
+
+  .apple-btn {
+    @apply inline-flex items-center justify-center gap-2
+           bg-[#1d1d1f] text-white rounded-full px-6 py-3
+           text-sm font-semibold tracking-[-0.01em]
+           transition-all duration-200
+           hover:bg-[#3a3a3c] active:scale-[0.98]
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .apple-btn-blue {
+    @apply apple-btn bg-[#0071e3] hover:bg-[#0077ed];
+  }
+
+  .apple-btn-outline {
+    @apply apple-btn bg-transparent text-[#0071e3] border border-[#0071e3]/30
+           hover:bg-[#0071e3]/5 hover:border-[#0071e3]/60;
+  }
+
+  .apple-input {
+    @apply w-full bg-[#f5f5f7] border border-transparent rounded-2xl px-4 py-3
+           text-sm text-[#1d1d1f] placeholder-[#86868b] outline-none
+           transition-all duration-200
+           focus:bg-white focus:border-[#0071e3]/40 focus:ring-2 focus:ring-[#0071e3]/10;
+  }
+
+  html.dark .apple-input {
+    @apply bg-[#2c2c2e] text-[#f5f5f7] focus:bg-[#3a3a3c];
+  }
+
+  .apple-textarea {
+    @apply apple-input resize-none leading-relaxed;
+  }
+
+  .ad-slot {
+    @apply rounded-2xl border border-dashed border-black/10 bg-[#f5f5f7]/60
+           flex items-center justify-center text-[#86868b] text-xs;
+    min-height: 80px;
+  }
+
+  html.dark .ad-slot {
+    @apply border-white/10 bg-white/5;
+  }
+
+  .section-eyebrow {
+    @apply text-xs font-semibold tracking-widest uppercase text-[#86868b];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+}
